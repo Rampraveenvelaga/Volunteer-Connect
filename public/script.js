@@ -180,7 +180,6 @@ function getSelectedSkills() {
 }
 
 async function loadVolunteerProfile() {
-    // Load existing profile if available
     try {
         const response = await fetch(`${API_BASE}/volunteers/profile`);
         if (response.ok) {
@@ -306,7 +305,6 @@ async function handleOpportunitySubmit(e) {
         if (response.ok) {
             showMessage('Opportunity posted successfully!', 'success');
             document.getElementById('opportunity-form').reset();
-            // Refresh the manage opportunities tab if it's active
             if (currentTab === 'manage-opportunities') {
                 loadNGOOpportunities();
             }
@@ -549,10 +547,8 @@ function handleSort() {
             case 'title':
                 return titleA.localeCompare(titleB);
             case 'date':
-                // Implement date sorting logic
                 return 0;
             case 'location':
-                // Implement location sorting logic
                 return 0;
             default:
                 return 0;
@@ -642,14 +638,10 @@ async function loadNGOApplications() {
     
     try {
         showLoading('ngo-applications');
-        const response = await fetch(`${API_BASE}/applications/ngo`, {
-            headers: {
-                'ngo-id': '507f1f77bcf86cd799439011' // Mock NGO ID
-            }
-        });
+        const response = await fetch(`${API_BASE}/applications/ngo`);
         if (response.ok) {
             const applications = await response.json();
-            console.log('Loaded applications:', applications); // Debug log
+            console.log('Loaded applications:', applications);
             displayNGOApplications(applications);
             updateApplicationStats(applications);
         } else {
@@ -741,12 +733,11 @@ async function updateApplicationStatus(applicationId, status) {
 // Filter and Search Applications
 function filterApplications() {
     const filter = document.getElementById('application-filter').value;
-    loadNGOApplications(); // Reload and filter on backend in future
+    loadNGOApplications();
 }
 
 function searchApplications() {
     const searchTerm = document.getElementById('applications-search').value;
-    // Implement search functionality
     loadNGOApplications();
 }
 
@@ -908,7 +899,6 @@ function changePage(direction) {
     if (newPage >= 1 && newPage <= totalPages) {
         currentPage = newPage;
         updatePagination();
-        // Implement pagination logic here
     }
 }
 
@@ -993,16 +983,3 @@ window.addEventListener('error', function(e) {
     console.error('JavaScript error:', e.error);
     showMessage('An unexpected error occurred. Please refresh the page.', 'error');
 });
-
-// Service Worker Registration (for PWA features)
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', function() {
-        navigator.serviceWorker.register('/sw.js')
-            .then(function(registration) {
-                console.log('ServiceWorker registration successful');
-            })
-            .catch(function(err) {
-                console.log('ServiceWorker registration failed: ', err);
-            });
-    });
-}
