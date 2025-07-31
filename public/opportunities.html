@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Opportunities - VolunteerConnect</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>VolunteerConnect</h2>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="volunteers.html">For Volunteers</a></li>
+                <li><a href="ngos.html">For NGOs</a></li>
+                <li><a href="opportunities.html" class="active">Opportunities</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="opportunities-page">
+            <h1>All Volunteer Opportunities</h1>
+            
+            <div class="filters-section">
+                <div class="filters-container">
+                    <input type="text" id="global-search" placeholder="Search opportunities...">
+                    <select id="global-category">
+                        <option value="">All Categories</option>
+                        <option value="education">Education</option>
+                        <option value="health">Health</option>
+                        <option value="environment">Environment</option>
+                        <option value="community">Community</option>
+                    </select>
+                    <select id="global-location">
+                        <option value="">All Locations</option>
+                        <option value="remote">Remote</option>
+                        <option value="local">Local</option>
+                    </select>
+                    <select id="global-type">
+                        <option value="">All Types</option>
+                        <option value="one-time">One-time</option>
+                        <option value="ongoing">Ongoing</option>
+                        <option value="event">Event</option>
+                    </select>
+                    <button class="btn btn-primary" onclick="filterAllOpportunities()">Filter</button>
+                </div>
+                <div class="view-options">
+                    <button class="view-btn active" onclick="setView('grid')">Grid View</button>
+                    <button class="view-btn" onclick="setView('list')">List View</button>
+                    <button class="view-btn" onclick="setView('map')">Map View</button>
+                </div>
+            </div>
+
+            <div class="results-info">
+                <p><span id="results-count">0</span> opportunities found</p>
+                <select id="sort-options">
+                    <option value="date">Sort by Date</option>
+                    <option value="title">Sort by Title</option>
+                    <option value="location">Sort by Location</option>
+                </select>
+            </div>
+
+            <div id="all-opportunities" class="opportunities-container grid-view"></div>
+
+            <div id="map-container" class="map-view" style="display: none;">
+                <div class="map-placeholder">
+                    <p>Interactive map showing opportunity locations would be displayed here</p>
+                    <p>Integration with Google Maps or similar mapping service</p>
+                </div>
+            </div>
+
+            <div class="pagination">
+                <button class="page-btn" onclick="changePage(-1)">Previous</button>
+                <span id="page-info">Page 1 of 1</span>
+                <button class="page-btn" onclick="changePage(1)">Next</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

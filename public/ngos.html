@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NGO Portal - VolunteerConnect</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>VolunteerConnect</h2>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="volunteers.html">For Volunteers</a></li>
+                <li><a href="ngos.html" class="active">For NGOs</a></li>
+                <li><a href="opportunities.html">Opportunities</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="ngo-dashboard">
+            <h1>NGO Dashboard</h1>
+            
+            <div class="dashboard-tabs">
+                <button class="tab-btn active" onclick="showTab('ngo-profile')">Organization Profile</button>
+                <button class="tab-btn" onclick="showTab('post-opportunity')">Post Opportunity</button>
+                <button class="tab-btn" onclick="showTab('manage-opportunities')">Manage Opportunities</button>
+                <button class="tab-btn" onclick="showTab('review-applications')">Review Applications</button>
+                <button class="tab-btn" onclick="showTab('volunteers-pool')">Volunteer Pool</button>
+            </div>
+
+            <!-- NGO Profile Tab -->
+            <div id="ngo-profile" class="tab-content active">
+                <div class="profile-section">
+                    <h2>Organization Profile</h2>
+                    <form id="ngo-form" class="form">
+                        <div class="form-row">
+                            <input type="text" id="ngo-name" placeholder="Organization Name" required>
+                            <input type="email" id="ngo-email" placeholder="Contact Email" required>
+                        </div>
+                        <div class="form-row">
+                            <input type="tel" id="ngo-phone" placeholder="Phone Number">
+                            <input type="text" id="ngo-website" placeholder="Website URL">
+                        </div>
+                        <input type="text" id="ngo-address" placeholder="Address">
+                        <textarea id="ngo-description" placeholder="Describe your organization's mission..." rows="4"></textarea>
+                        <div class="causes-section">
+                            <label>Primary Causes:</label>
+                            <div class="causes-grid">
+                                <label><input type="checkbox" value="education"> Education</label>
+                                <label><input type="checkbox" value="health"> Health</label>
+                                <label><input type="checkbox" value="environment"> Environment</label>
+                                <label><input type="checkbox" value="poverty"> Poverty</label>
+                                <label><input type="checkbox" value="human-rights"> Human Rights</label>
+                                <label><input type="checkbox" value="disaster-relief"> Disaster Relief</label>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Save Profile</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Post Opportunity Tab -->
+            <div id="post-opportunity" class="tab-content">
+                <div class="post-section">
+                    <h2>Post New Opportunity</h2>
+                    <form id="opportunity-form" class="form">
+                        <input type="text" id="opp-title" placeholder="Opportunity Title" required>
+                        <textarea id="opp-description" placeholder="Detailed description of the opportunity..." rows="4"></textarea>
+                        <div class="form-row">
+                            <select id="opp-category" required>
+                                <option value="">Select Category</option>
+                                <option value="education">Education</option>
+                                <option value="health">Health</option>
+                                <option value="environment">Environment</option>
+                                <option value="community">Community</option>
+                                <option value="disaster-relief">Disaster Relief</option>
+                                <option value="technology">Technology</option>
+                            </select>
+                            <select id="opp-type">
+                                <option value="one-time">One-time</option>
+                                <option value="ongoing">Ongoing</option>
+                                <option value="event">Event</option>
+                            </select>
+                        </div>
+                        <div class="form-row">
+                            <input type="date" id="opp-start-date" required>
+                            <input type="time" id="opp-time">
+                        </div>
+                        <input type="text" id="opp-location" placeholder="Location (or 'Remote')">
+                        <input type="number" id="opp-volunteers-needed" placeholder="Number of volunteers needed" min="1">
+                        <textarea id="opp-requirements" placeholder="Required skills or qualifications..." rows="3"></textarea>
+                        <button type="submit" class="btn btn-primary">Post Opportunity</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Manage Opportunities Tab -->
+            <div id="manage-opportunities" class="tab-content">
+                <div class="manage-section">
+                    <h2>Manage Posted Opportunities</h2>
+                    <div class="opportunities-summary">
+                        <div class="summary-cards">
+                            <div class="summary-card">
+                                <h3 id="total-opportunities">0</h3>
+                                <p>Total Opportunities</p>
+                            </div>
+                            <div class="summary-card">
+                                <h3 id="active-opportunities">0</h3>
+                                <p>Active Opportunities</p>
+                            </div>
+                            <div class="summary-card">
+                                <h3 id="total-applications">0</h3>
+                                <p>Total Applications</p>
+                            </div>
+                            <div class="summary-card">
+                                <h3 id="pending-applications">0</h3>
+                                <p>Pending Reviews</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="ngo-opportunities" class="opportunities-grid"></div>
+                </div>
+            </div>
+
+            <!-- Review Applications Tab -->
+            <div id="review-applications" class="tab-content">
+                <div class="applications-section">
+                    <h2>Review Applications</h2>
+                    <div class="applications-filter">
+                        <select id="application-filter" onchange="filterApplications()">
+                            <option value="all">All Applications</option>
+                            <option value="pending">Pending Review</option>
+                            <option value="approved">Approved</option>
+                            <option value="rejected">Rejected</option>
+                        </select>
+                        <div class="applications-search">
+                            <input type="text" id="applications-search" placeholder="Search by volunteer name or opportunity..." onkeyup="searchApplications()">
+                        </div>
+                    </div>
+                    <div class="applications-stats">
+                        <div class="stat-card pending">
+                            <span class="stat-number" id="pending-count">0</span>
+                            <span class="stat-label">Pending</span>
+                        </div>
+                        <div class="stat-card approved">
+                            <span class="stat-number" id="approved-count">0</span>
+                            <span class="stat-label">Approved</span>
+                        </div>
+                        <div class="stat-card rejected">
+                            <span class="stat-number" id="rejected-count">0</span>
+                            <span class="stat-label">Rejected</span>
+                        </div>
+                    </div>
+                    <div id="ngo-applications" class="applications-grid"></div>
+                </div>
+            </div>
+
+            <!-- Volunteers Pool Tab -->
+            <div id="volunteers-pool" class="tab-content">
+                <div class="volunteers-section">
+                    <h2>Available Volunteers</h2>
+                    <div class="search-filters">
+                        <input type="text" id="volunteer-search" placeholder="Search volunteers by skills, name, or location...">
+                        <select id="skill-filter">
+                            <option value="">All Skills</option>
+                            <option value="teaching">Teaching</option>
+                            <option value="healthcare">Healthcare</option>
+                            <option value="technology">Technology</option>
+                            <option value="environment">Environment</option>
+                            <option value="fundraising">Fundraising</option>
+                            <option value="communication">Communication</option>
+                        </select>
+                        <button class="btn btn-primary" onclick="searchVolunteers()">Search</button>
+                    </div>
+                    <div id="volunteers-list" class="volunteers-grid"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 VolunteerConnect. Making the world a better place, one volunteer at a time.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

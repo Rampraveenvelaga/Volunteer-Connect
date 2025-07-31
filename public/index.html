@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VolunteerConnect - Find Your Purpose</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>VolunteerConnect</h2>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="volunteers.html">For Volunteers</a></li>
+                <li><a href="ngos.html">For NGOs</a></li>
+                <li><a href="opportunities.html">Opportunities</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Connect. Volunteer. Make a Difference.</h1>
+            <p>Join thousands of volunteers and NGOs making meaningful connections worldwide</p>
+            <div class="hero-buttons">
+                <button class="btn btn-primary" onclick="navigateTo('volunteers.html')">Find Opportunities</button>
+                <button class="btn btn-secondary" onclick="navigateTo('ngos.html')">Post Opportunities</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="container">
+            <h2>Why Choose VolunteerConnect?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3>Smart Matching</h3>
+                    <p>AI-powered algorithm matches volunteers with perfect opportunities based on skills, location, and interests</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Real-time Communication</h3>
+                    <p>Instant messaging between volunteers and NGOs for seamless coordination</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Progress Tracking</h3>
+                    <p>Track your volunteer hours, impact, and achievements with detailed analytics</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Verified Organizations</h3>
+                    <p>All NGOs are verified to ensure legitimate and meaningful volunteer opportunities</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <h3 id="volunteer-count">0</h3>
+                    <p>Active Volunteers</p>
+                </div>
+                <div class="stat-item">
+                    <h3 id="ngo-count">0</h3>
+                    <p>Registered NGOs</p>
+                </div>
+                <div class="stat-item">
+                    <h3 id="opportunity-count">0</h3>
+                    <p>Opportunities Posted</p>
+                </div>
+                <div class="stat-item">
+                    <h3 id="hours-count">0</h3>
+                    <p>Volunteer Hours</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 VolunteerConnect. Making the world a better place, one volunteer at a time.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

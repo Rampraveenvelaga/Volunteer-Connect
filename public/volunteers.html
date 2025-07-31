@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Volunteer Portal - VolunteerConnect</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>VolunteerConnect</h2>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="volunteers.html" class="active">For Volunteers</a></li>
+                <li><a href="ngos.html">For NGOs</a></li>
+                <li><a href="opportunities.html">Opportunities</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="volunteer-dashboard">
+            <h1>Volunteer Dashboard</h1>
+            
+            <div class="dashboard-tabs">
+                <button class="tab-btn active" onclick="showTab('profile')">Profile</button>
+                <button class="tab-btn" onclick="showTab('search')">Find Opportunities</button>
+                <button class="tab-btn" onclick="showTab('applications')">My Applications</button>
+            </div>
+
+            <!-- Profile Tab -->
+            <div id="profile" class="tab-content active">
+                <div class="profile-section">
+                    <h2>Create/Update Your Profile</h2>
+                    <form id="volunteer-form" class="form">
+                        <div class="form-row">
+                            <input type="text" id="volunteer-name" placeholder="Full Name" required>
+                            <input type="email" id="volunteer-email" placeholder="Email" required>
+                        </div>
+                        <div class="form-row">
+                            <input type="tel" id="volunteer-phone" placeholder="Phone Number">
+                            <input type="text" id="volunteer-location" placeholder="Location">
+                        </div>
+                        <textarea id="volunteer-bio" placeholder="Tell us about yourself..." rows="4"></textarea>
+                        <div class="skills-section">
+                            <label>Skills (select all that apply):</label>
+                            <div class="skills-grid">
+                                <label><input type="checkbox" value="teaching"> Teaching</label>
+                                <label><input type="checkbox" value="healthcare"> Healthcare</label>
+                                <label><input type="checkbox" value="technology"> Technology</label>
+                                <label><input type="checkbox" value="environment"> Environment</label>
+                                <label><input type="checkbox" value="fundraising"> Fundraising</label>
+                                <label><input type="checkbox" value="communication"> Communication</label>
+                            </div>
+                        </div>
+                        <div class="availability-section">
+                            <label>Availability:</label>
+                            <select id="volunteer-availability">
+                                <option value="weekends">Weekends</option>
+                                <option value="weekdays">Weekdays</option>
+                                <option value="flexible">Flexible</option>
+                                <option value="evenings">Evenings</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Save Profile</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Search Tab -->
+            <div id="search" class="tab-content">
+                <div class="search-section">
+                    <h2>Find Volunteer Opportunities</h2>
+                    <div class="search-filters">
+                        <input type="text" id="search-keyword" placeholder="Search by keyword...">
+                        <select id="filter-category">
+                            <option value="">All Categories</option>
+                            <option value="education">Education</option>
+                            <option value="health">Health</option>
+                            <option value="environment">Environment</option>
+                            <option value="community">Community</option>
+                        </select>
+                        <select id="filter-location">
+                            <option value="">All Locations</option>
+                            <option value="remote">Remote</option>
+                            <option value="local">Local</option>
+                        </select>
+                        <button class="btn btn-primary" onclick="searchOpportunities()">Search</button>
+                    </div>
+                    <div id="search-results" class="opportunities-grid"></div>
+                </div>
+            </div>
+
+            <!-- Applications Tab -->
+            <div id="applications" class="tab-content">
+                <div class="applications-section">
+                    <h2>My Applications</h2>
+                    <div id="applications-list" class="applications-grid"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
